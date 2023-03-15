@@ -44,12 +44,12 @@ services:
 ```java
 @Service
 public class DispatcherService {
-    private final JmsTemplate jmsTemplate; // Jms'ye mesaj göndermekten sorumlu
+    private final JmsTemplate jmsTemplate;
     public DispatcherService(JmsTemplate jmsTemplate) {
         this.jmsTemplate = jmsTemplate;
     }
     @Value("${jms.queue}")
-    String queue;//Mesajı göndereceğimiz bir destination queue
+    String queue;
     @Value("Q.object")
     String objqueue;
 
@@ -119,4 +119,15 @@ public class MessageController {
 }
 ```
 
-* Docker-compose dosyasını çalıştırıp projemizi ayağa kaldırdıktan sonra 
+* Docker-compose dosyasını çalıştırıp projemizi ayağa kaldırdıktan sonra http://localhost:8161/ portuna gidip Management Console'u seçiyoruz. Projemizde eklemiş olduğumuz kuyruk yapısı görülebilir.
+
+![image](https://user-images.githubusercontent.com/91599453/225327596-8d339c56-33bd-4772-96fc-02b6057b3786.png)
+
+* localhost:8080/message/object adresine Postman üzerinden post isteği atıp gönderilen mesajın içeriği gözükecektir.
+
+![image](https://user-images.githubusercontent.com/91599453/225328079-8114c720-2425-4622-9fe9-6f169637ecf4.png)
+
+* Post isteğini attıktan sonra console ekranından gelen log üzerinde alınan veriyi görebiliriz.
+
+![image](https://user-images.githubusercontent.com/91599453/225328598-9eb107b2-45fb-44d1-9798-f795ccd2a96a.png)
+
