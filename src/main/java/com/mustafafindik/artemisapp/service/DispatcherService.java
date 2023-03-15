@@ -1,5 +1,6 @@
 package com.mustafafindik.artemisapp.service;
 
+import com.mustafafindik.artemisapp.entity.Message;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
@@ -15,5 +16,8 @@ public class DispatcherService {
 
     public void sendTheMessage(String message){
         jmsTemplate.convertAndSend(queue,message);
+    }
+    public void sendObject(Message objmessage){
+        jmsTemplate.convertAndSend(queue,objmessage);
     }
 }

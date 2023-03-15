@@ -1,5 +1,6 @@
 package com.mustafafindik.artemisapp.controller;
 
+import com.mustafafindik.artemisapp.entity.Message;
 import com.mustafafindik.artemisapp.service.DispatcherService;
 import com.mustafafindik.artemisapp.service.ReceiverService;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/message")
 public class MessageController {
-
     private final DispatcherService dispatcherService;
 
     public MessageController(DispatcherService dispatcherService) {
@@ -21,5 +21,10 @@ public class MessageController {
     public ResponseEntity send(@RequestBody String message){
         dispatcherService.sendTheMessage(message);
         return ResponseEntity.ok("Message send : " + message);
+    }
+    @PostMapping("/object")
+    public ResponseEntity sendObject(@RequestBody Message objmessage){
+        dispatcherService.sendObject(objmessage);
+        return ResponseEntity.ok("Message send : " + objmessage);
     }
 }
