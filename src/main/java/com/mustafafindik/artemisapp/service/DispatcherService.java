@@ -13,11 +13,13 @@ public class DispatcherService {
     }
     @Value("${jms.queue}")
     String queue;//Mesajı göndereceğimiz bir destination queue
+    @Value("Q.object")
+    String objqueue;
 
     public void sendTheMessage(String message){
         jmsTemplate.convertAndSend(queue,message);
     }
     public void sendObject(Message objmessage){
-        jmsTemplate.convertAndSend(queue,objmessage);
+        jmsTemplate.convertAndSend(objqueue,objmessage);
     }
 }

@@ -13,7 +13,7 @@ public class ReceiverService {
     public void receiverMessage(String message){
         logger.info("Received message is :" +message);
     }
-    @JmsListener(destination = "${jms.queue}")
+    @JmsListener(destination = "Q.object")
     public void receiverObject(Message objmessage){
         logger.info("Received object message is : " + objmessage);
     }
